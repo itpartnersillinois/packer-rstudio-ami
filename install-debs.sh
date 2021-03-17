@@ -12,13 +12,29 @@ sudo apt-get install -y r-base r-base-dev gdebi-core libcurl4-openssl-dev libxml
 chmod a+x /home/ubuntu/install-rpackages.sh
 sudo /home/ubuntu/install-rpackages.sh
 sudo useradd -m -p sayzF.CuJmED6 rstudio
-wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb
-sudo gdebi -n rstudio-server-1.4.1103-amd64.deb
-rm -f rstudio-server-1.4.1103-amd64.deb
-echo "www-port=80" > /tmp/rserver-port-80.conf
-sudo cp /tmp/rserver-port-80.conf /etc/rstudio/rserver.conf 
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1106-amd64.deb
+sudo gdebi -n rstudio-server-1.4.1106-amd64.deb
+rm -f rstudio-server-1.4.1106-amd64.deb
+sudo tee -a /etc/rstudio/rserver.conf  > /dev/null << EOL
+www-port=80
+EOL
 sudo apt clean
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 rm -rf aws awscliv2.zip install-rpackages.sh
+
+sudo -u rstudio mkdir ~rstudio/.config
+sudo -u rstudio mkdir ~rstudio/.config/rstudio
+
+sudo -u rstudio tee -a ~rstudio/.config/rstudio/rstudio-prefs.json > /dev/null << EOL
+{
+    "restore_source_documents": false,
+    "save_workspace": "never",
+    "load_workspace": false,
+    "initial_working_directory": "~",
+    "always_save_history": false,
+    "restore_last_project": false,
+    "posix_terminal_shell": "bash"
+}
+EOL
