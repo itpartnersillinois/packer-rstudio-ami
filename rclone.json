@@ -1,10 +1,10 @@
 {
     "variables": {
-        "ami_name_prefix": "FIN510-RStudio",
-        "instance_type": "t2.2xlarge",
+        "ami_name_prefix": "rclone",
+        "instance_type": "c5n.18xlarge",
         "profile": "{{env `AWS_PROFILE`}}",
         "region": "us-east-2",
-        "root_volume_size_Gi": "20"
+        "root_volume_size_Gi": "8"
     },
     "builders": [{
         "ami_name": "{{user `ami_name_prefix`}}-{{isotime | clean_resource_name}}",
@@ -42,14 +42,13 @@
         },
         {
             "type": "file",
-            "source": "{{template_dir}}/install-rpackages.sh",
-            "destination": "/home/ubuntu/install-rpackages.sh"
+            "source": "{{template_dir}}/install-rclone.sh",
+            "destination": "/home/ubuntu/install-rclone.sh"
         },
         {
-            "scripts": [
-                "{{template_dir}}/install-debs.sh"
-            ],
-            "type": "shell"
+            "type": "file",
+            "source": "{{template_dir}}/rclone.json",
+            "destination": "/home/ubuntu/.config/rclone/rclone.json"
         }
     ]
 }
