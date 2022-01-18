@@ -15,9 +15,9 @@ sudo apt-get install -y r-base r-base-dev gdebi-core libcurl4-openssl-dev libxml
 chmod a+x /home/ubuntu/install-rpackages.sh
 sudo /home/ubuntu/install-rpackages.sh
 sudo useradd -m -p sayzF.CuJmED6 rstudio
-wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1717-amd64.deb
-sudo gdebi -n rstudio-server-1.4.1717-amd64.deb
-rm -f rstudio-server-1.4.1717-amd64.deb
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2021.09.2-382-amd64.deb
+sudo gdebi -n rstudio-server-2021.09.2-382-amd64.deb
+rm -f rstudio-server-2021.09.2-382-amd64.deb
 sudo tee -a /etc/rstudio/rserver.conf  > /dev/null << EOL
 www-port=80
 EOL
