@@ -1,6 +1,6 @@
 {
     "variables": {
-        "ami_name_prefix": "FIN510-RStudio",
+        "ami_name_prefix": "FIN550-RStudio",
         "instance_type": "t2.2xlarge",
         "profile": "{{env `AWS_PROFILE`}}",
         "region": "us-east-2",
