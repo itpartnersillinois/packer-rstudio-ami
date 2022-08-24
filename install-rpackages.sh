@@ -14,6 +14,7 @@ install.packages(c(
         "leaps",
         "mapproj",
         "maps",
+        "markdown",
         "Metrics",
         "neuralnet",
         "parsnip",
